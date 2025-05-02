@@ -1,0 +1,516 @@
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #333;
+    min-height: 100vh;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Menú lateral */
+.sidebar {
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
+}
+
+.sidebar.compressed {
+    width: 80px; /* Ancho reducido */
+}
+
+.sidebar.compressed h2,
+.sidebar.compressed ul li a span {
+    display: none; /* Ocultar texto en modo comprimido */
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 24px;
+    text-align: center;
+    color: #667eea;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #667eea;
+    color: #fff;
+}
+
+.sidebar ul li a.active {
+    background-color: #667eea;
+    color: #fff;
+}
+
+/* Botón de alternar menú */
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+/* Contenido principal */
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: margin-left 0.3s ease;
+}
+
+.content.expanded {
+    margin-left: 20px; /* Ajuste cuando el menú está comprimido */
+}
+
+.content h1 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #667eea;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Cards */
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(33.333% - 20px);
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.card.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #667eea;
+}
+
+.card p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Estilos para el mapa */
+#map {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Historial de ubicaciones */
+#historial {
+    list-style: none;
+    padding: 0;
+}
+
+#historial li {
+    background-color: #f4f4f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%;
+    }
+
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .content {
+        margin: 10px;
+    }
+}
+
+/* Estilo claro por defecto */
+body {
+    background-color: #ffffff;
+    color: #333333;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilo oscuro */
+body.dark-mode {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+/* También puedes cambiar el fondo de la barra lateral si lo deseas */
+.sidebar {
+    background-color: #f4f4f4;
+}
+
+body.dark-mode .sidebar {
+    background-color: #222222;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+}
+
+body.dark-mode .card {
+    background-color: #444444;
+    border: 1px solid #666666;
+}
+
+/* 🔹 Reset General */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+}
+
+/* 🔹 Barra Superior */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 200px; /* Ajuste para que no se superponga con la barra lateral */
+    width: calc(100% - 200px);
+    z-index: 10;
+}
+
+/* 🔹 Estado de Usuario y Cerrar Sesión */
+.user-status {
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.logout-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background-color: #cc0000;
+}
+
+/* 🔹 Barra Lateral */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #222;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 60px; /* Espacio para no chocar con la barra superior */
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 15px;
+    text-align: center;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #444;
+}
+
+/* 🔹 Contenido Principal */
+.dashboard {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+}
+
+.content {
+    padding: 80px 20px 20px; /* Ajuste para no chocar con la barra superior */
+}
+
+/* 🔹 Tarjetas de Contenido */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔹 Barra Superior (Navbar) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222;
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Tamaño compacto pero funcional */
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔹 Sección Izquierda */
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 35px;  /* Logo más pequeño */
+    height: 35px;
+    margin-right: 12px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.navbar-title {
+    font-size: 18px;  /* Tamaño óptimo */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    white-space: nowrap;
+    color: #f1f1f1;
+}
+
+/* 🔹 Sección Derecha (Navegación) */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaciado mejorado */
+}
+
+/* 🔹 Menú de Navegación */
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.3s ease-in-out, color 0.2s;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffd700; /* Color dorado al pasar el cursor */
+}
+
+/* 🔹 Botón de Cerrar Sesión */
+.logout-btn {
+    background-color: #ff4d4d;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.3s ease-in-out;
+}
+
+.logout-btn:hover {
+    background-color: #cc0000;
+}
+
+/* 🔹 Responsividad (Adaptación a pantallas pequeñas) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+    }
+
+    .navbar-left {
+        margin-bottom: 10px;
+    }
+
+    .navbar-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links li {
+        margin-bottom: 5px;
+    }
+}
+
+/* Animación y transiciones para comprimir el menú */
+#toggleMenu {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+#menuText {
+    margin-left: 8px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+nav ul li a {
+    display: inline-block;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    color: rgb(243, 242, 242);
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #0091ff;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el sidebar */
+.sidebar {
+    transition: all 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 64px;
+}
+
+.sidebar.collapsed #menuText {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100%;
+        width: 250px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .sidebar.collapsed {
+        left: -100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .sidebar {
+        width: 250px;
+    }
+}

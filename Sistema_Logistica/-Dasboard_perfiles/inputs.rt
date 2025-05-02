@@ -1,0 +1,92 @@
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+export default function Dashboard() {
+  const [data, setData] = useState([]);
+  const [form, setForm] = useState({
+    fecha: "",
+    origen: "",
+    unidad: "",
+    operador: "",
+    cliente: "",
+    flete: "",
+    fecRecepcion: "",
+    maniobras: "",
+    destino: "",
+    kmRecorridos: "",
+    ordenServicio: "",
+    facturaCP: "",
+    destinatario: "",
+    fleteReal: "",
+    otros: "",
+    concepto: "",
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setData([...data, form]);
+    setForm({
+      fecha: "",
+      origen: "",
+      unidad: "",
+      operador: "",
+      cliente: "",
+      flete: "",
+      fecRecepcion: "",
+      maniobras: "",
+      destino: "",
+      kmRecorridos: "",
+      ordenServicio: "",
+      facturaCP: "",
+      destinatario: "",
+      fleteReal: "",
+      otros: "",
+      concepto: "",
+    });
+  };
+
+  return (
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Registro de Datos</h1>
+      <Card>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+            {Object.keys(form).map((key) => (
+              <div key={key}>
+                <Label>{key.replace(/([A-Z])/g, " $1").trim()}</Label>
+                <Input
+                  type="text"
+                  name={key}
+                  value={form[key]}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            ))}
+            <Button type="submit" className="col-span-2">Guardar</Button>
+          </form>
+        </CardContent>
+      </Card>
+
+      <h2 className="text-xl font-bold mt-6">Datos Registrados</h2>
+      <div className="grid gap-4 mt-2">
+        {data.map((item, index) => (
+          <Card key={index}>
+            <CardContent className="p-4">
+              {Object.entries(item).map(([key, value]) => (
+                <p key={key}><strong>{key.replace(/([A-Z])/g, " $1").trim()}:</strong> {value}</p>
+              ))}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
